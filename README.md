@@ -1,4 +1,5 @@
-
+## 建议
+该项目适用于大型复杂项目，简单小型项目建议使用[springboot-link-admin](https://github.com/252956/springboot-link-admin)
 
 ## 简介
 link-admin是[springboot-link-admin](https://github.com/252956/springboot-link-admin)的升级版本，对系统架构进行了调整，通过模块化的方式以适应大型后端项目的开发；
