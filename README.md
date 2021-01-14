@@ -36,8 +36,6 @@ git clone https://github.com/252956/link-admin.git
 link-admin\link-admin-system模块 运行 App.java
 ```
 
-浏览器访问 http://localhost:8888/
-
 
 
 
