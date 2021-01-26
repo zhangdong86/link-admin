@@ -19,7 +19,6 @@ import com.link.admin.system.domain.RolePermission;
 import com.link.admin.system.exception.AuthException;
 import com.link.admin.system.service.IPermissionService;
 
-
 /**
  * 权限业务层实现类
  * 
@@ -62,15 +61,17 @@ public class PermissionService implements IPermissionService {
 	}
 
 	@Override
-	public boolean add(Permission permission)  {
+	public boolean add(Permission permission) {
 		if (permission.getTypes() == null) {
 			throw new AuthException("权限类型不能为空");
 		}
 		if (StringUtils.isBlank(permission.getName())) {
-			throw new AuthException("权限名不能为空");
+			throw new AuthException("菜单标题/按钮名称不能为空");
 		}
-		if (StringUtils.isBlank(permission.getUrl())) {
-			throw new AuthException("路由地址不能为空");
+		if (permission.getTypes() != 2) {
+			if (StringUtils.isBlank(permission.getUrl())) {
+				throw new AuthException("路由地址不能为空");
+			}
 		}
 		if (permission.getTypes() == 1 && permission.getI_frame() == 0) {
 			if (StringUtils.isBlank(permission.getComponent_name())) {
@@ -80,6 +81,7 @@ public class PermissionService implements IPermissionService {
 				throw new AuthException("组件路径不能为空");
 			}
 		}
+
 		if (permission.getParentId() == null) {
 			permission.setParentId(0);
 		}
@@ -91,15 +93,17 @@ public class PermissionService implements IPermissionService {
 	}
 
 	@Override
-	public boolean update(Permission permission)  {
+	public boolean update(Permission permission) {
 		if (permission.getTypes() == null) {
 			throw new AuthException("权限类型不能为空");
 		}
 		if (StringUtils.isBlank(permission.getName())) {
-			throw new AuthException("权限名不能为空");
+			throw new AuthException("菜单标题/按钮名称不能为空");
 		}
-		if (StringUtils.isBlank(permission.getUrl())) {
-			throw new AuthException("路由地址不能为空");
+		if (permission.getTypes() != 2) {
+			if (StringUtils.isBlank(permission.getUrl())) {
+				throw new AuthException("路由地址不能为空");
+			}
 		}
 		if (permission.getTypes() == 1 && permission.getI_frame() == 0) {
 			if (StringUtils.isBlank(permission.getComponent_name())) {
@@ -126,7 +130,7 @@ public class PermissionService implements IPermissionService {
 
 	@Transactional(value = "baseTransactionManager")
 	@Override
-	public boolean delete(Integer id)  {
+	public boolean delete(Integer id) {
 		if (id == null) {
 			throw new AuthException("删除条件不能为空");
 		}
@@ -144,7 +148,7 @@ public class PermissionService implements IPermissionService {
 	}
 
 	@Override
-	public Permission query(Integer code)  {
+	public Permission query(Integer code) {
 		Permission right = new Permission();
 		right.setId(code);
 		List<Permission> list = rightDao.find(right);

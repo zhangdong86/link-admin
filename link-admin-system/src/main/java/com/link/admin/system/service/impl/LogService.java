@@ -12,7 +12,6 @@ import com.link.admin.system.domain.BLogVO;
 import com.link.admin.system.exception.AuthException;
 import com.link.admin.system.service.ILogService;
 
-
 /**
  * 日志业务层实现类
  * 
@@ -35,14 +34,6 @@ public class LogService implements ILogService {
 		if (StringUtils.isBlank(vo.getStarttime())
 				|| StringUtils.isBlank(vo.getEndtime())) {
 			throw new AuthException("请选择时间范围");
-		}
-		if (DateUtils.differentDays(
-				DateUtils.formatDateTime(vo.getStarttime()),
-				DateUtils.formatDateTime(vo.getEndtime())) > 1
-				|| DateUtils.differentDays(
-						DateUtils.formatDateTime(vo.getStarttime()),
-						DateUtils.formatDateTime(vo.getEndtime())) < 0) {
-			throw new AuthException("时间范围不能大于一天");
 		}
 		return logDao.selectPage(vo);
 	}

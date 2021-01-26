@@ -39,7 +39,6 @@ public class UserRest extends BaseRest {
 
 	// 一分钟请求100次，等待300秒
 	@RequestLimit(time = 60, count = 100, waits = 300)
-	@OpertionBLog(title = "登录")
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public ResponseResult login(@RequestBody LoginVO vo) {
 		ResponseResult rep = new ResponseResult();
@@ -79,7 +78,6 @@ public class UserRest extends BaseRest {
 		return rep;
 	}
 
-	@OpertionBLog(title = "退出")
 	@RequestMapping("logout")
 	public ResponseResult logout() {
 		ResponseResult rep = new ResponseResult();

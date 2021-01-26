@@ -2,12 +2,12 @@ package com.link.admin.system.domain;
 
 import com.link.admin.core.web.mvc.JqGridParam;
 
-
 public class BLogVO extends JqGridParam {
 	private String starttime;
 	private String endtime;
 	private String loginuser;
 	private Integer state;
+	private String title;
 
 	public String getStarttime() {
 		return starttime;
@@ -39,6 +39,14 @@ public class BLogVO extends JqGridParam {
 
 	public void setState(Integer state) {
 		this.state = state;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
